@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuşlar ile hareket</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        position: absolute;
+        left: 700px;
+        top: 250px;
+      }
+      .big {
+        width: 200px;
+        height: 200px;
+      }
+      .small {
+        width: 50px;
+        height: 50px;
+      }
+      .red {
+        background-color: red;
+      }
+      .purple {
+        background-color: purple;
+      }
+      .green {
+        background-color: green;
+      }
+      .round {
+        border-radius: 50%;
+      }
+
+      header {
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        background-color: black;
+        color: white;
+        justify-content: space-evenly;
+        position: relative;
+      }
+      header > div {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="size">
+        <h1>Boyut:</h1>
+        <h3>Büyütmek : B</h3>
+        <h3>Küçütmek : K</h3>
+      </div>
+      <div class="color">
+        <h1>Renk:</h1>
+        <h3>Kırmızı : R</h3>
+        <h3>Yeşil : G</h3>
+        <h3>Mor : M</h3>
+      </div>
+      <div class="image">
+        <h1>Şekil:</h1>
+        <h3>Kare: S</h3>
+        <h3>Yuvarlak : C</h3>
+      </div>
+
+      <div class="move">
+        <h2>Hareket:</h2>
+        <h4>Yukarı yön tuşu</h4>
+        <h4>Aşağı yön tuşu</h4>
+        <h4>Sağa yön tuşu</h4>
+        <h4>Sola yön tuşu</h4>
+      </div>
+    </header>
+    <div class="box"></div>
+
+    <script>
+      window.onkeydown = function (e) {
+        let kutu = document.querySelector(".box");
+
+        //sola olan mesafesini alma
+        let left = kutu.offsetLeft;
+
+        //yukarıya olan mesafesini alma
+        let top = kutu.offsetTop;
+
+        //Sol tuş
+        if (e.keyCode == 37) {
+          kutu.style.left = left - 5 + "px";
+        }
+        //Sağ tuş
+        else if (e.keyCode == 39) {
+          kutu.style.left = left + 5 + "px";
+        }
+        //Yukarı tuşu
+        else if (e.keyCode == 38) {
+          kutu.style.top = top - 5 + "px";
+        }
+        //Aşağı tuşu
+        else if (e.keyCode == 40) {
+          kutu.style.top = top + 5 + "px";
+        }
+
+        //boyut
+        else if (e.keyCode == 66) {
+          kutu.classList.add("big");
+          kutu.classList.remove("small");
+        } else if (e.keyCode == 75) {
+          kutu.classList.add("small");
+          kutu.classList.remove("big");
+        }
+
+        //şekil
+        else if (e.keyCode == 67) {
+          kutu.classList.add("round");
+        } else if (e.keyCode == 83) {
+          kutu.classList.remove("round");
+        }
+
+        //renkler
+        else if (e.keyCode == 82) {
+          kutu.classList.add("red");
+          kutu.classList.remove("purple");
+          kutu.classList.remove("green");
+        } else if (e.keyCode == 71) {
+          kutu.classList.add("green");
+          kutu.classList.remove("purple");
+          kutu.classList.remove("red");
+        } else if ((e.keyCode = 80)) {
+          kutu.classList.add("purple");
+          kutu.classList.remove("red");
+          kutu.classList.remove("green");
+        }
+      };
+    </script>
+  </body>
+</html>
